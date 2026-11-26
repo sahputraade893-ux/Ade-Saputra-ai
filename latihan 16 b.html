@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolusi & Generasi Honda BeAT</title>
+    <style>
+        /* Reset & Variabel Warna */
+        :root {
+            --honda-red: #cc0000;
+            --honda-dark: #1a1a1a;
+            --honda-gray: #f4f4f4;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--honda-gray);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigasi */
+        header {
+            background-color: var(--honda-dark);
+            color: var(--white);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--honda-red);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--honda-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--honda-dark) 0%, #3a0000 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+            border-bottom: 5px solid var(--honda-red);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+            color: #dddddd;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--honda-red);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #a30000;
+            transform: translateY(-2px);
+        }
+
+        /* Kontainer Utama */
+        .container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--honda-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--honda-red);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Timeline / Kartu Generasi */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .gen-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: row;
+            transition: transform 0.3s;
+            border-left: 6px solid var(--honda-red);
+        }
+
+        .gen-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gen-year {
+            background-color: var(--honda-dark);
+            color: var(--white);
+            padding: 2rem;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .gen-year span.num {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--honda-red);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .gen-year span.year {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .gen-content {
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .gen-content h3 {
+            font-size: 1.5rem;
+            color: var(--honda-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .gen-tag {
+            display: inline-block;
+            background-color: #ffe6e6;
+            color: var(--honda-red);
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .gen-content p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .spec-item {
+            background-color: var(--honda-gray);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--honda-dark);
+        }
+
+        /* Tabel Ringkasan */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 4rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        th {
+            background-color: var(--honda-dark);
+            color: var(--white);
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--honda-dark);
+            color: #aaaaaa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: var(--white);
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .gen-card {
+                flex-direction: column;
+            }
+            .gen-year {
+                padding: 1rem;
+                flex-direction: row;
+                gap: 15px;
+            }
+            .gen-year span.year {
+                margin-top: 0;
+                font-size: 1.4rem;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigasi -->
+    <header>
+        <div class="logo">HONDA <span>BeAT</span></div>
+        <nav>
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#generasi">Generasi</a></li>
+                <li><a href="#perbandingan">Perbandingan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Bagian Utama / Hero -->
+    <section id="beranda" class="hero">
+        <h1>Evolusi Sang Skutik Sejuta Umat</h1>
+        <p>Menelusuri jejak sejarah, inovasi mesin, dan perubahan desain Honda BeAT di Indonesia sejak pertama kali meluncur pada tahun 2008 hingga era modern.</p>
+        <a href="#generasi" class="btn">Lihat Perjalanan Generasi</a>
+    </section>
+
+    <!-- Daftar Generasi -->
+    <main id="generasi" class="container">
+        <h2 class="section-title">Perjalanan 6 Generasi Honda BeAT</h2>
+
+        <div class="timeline">
+            <!-- Generasi 1 -->
+            <article class="gen-card">
+                <div class="gen-year">
+                    <span class="num">Generasi 1</span>
+                    <span class="year">2008 - 2012</span>
+                </div>
+                <div class="gen-content">
+                    <h3>BeAT Karburator ("BeAT Karbu")</h3>
+                    <span class="gen-tag">Pelopor Skutik Ramping</span>
+                    <p>Hadir pertama kali untuk menyaingi dominasi skutik kompetitor. Dikenal dengan bodi super ramping, desain lampu depan menyatu di tebeng, serta spakbor depan menggantung pada versi awalnya (sebelum direvisi pada 2010).</p>
+                    <div class="specs">
+                        <span class="spec-item">Mesin: 108cc SOHC</span>
+                        <span class="spec-item">Sistem: Karburator</span>
+                        <span class="spec-item">Fitur: Side Stand Switch</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Generasi 2 -->
+            <article class="gen-card">
+                <div class="gen-year">
+                    <span class="num">Generasi 2</span>
+                    <span class="year">2012 - 2014</span>
+                </div>
+                <div class="gen-content">
+                    <h3>BeAT FI (Fuel Injection)</h3>
+                    <span class="gen-tag">Era Injeksi PGM-FI</span>
+                    <p>Transformasi besar dengan bodi yang lebih gambot dan bagasi lebih luas (11,2 liter). Teknologi karburator resmi ditinggalkan dan diganti sistem injeksi PGM-FI yang membuat konsumsi bahan bakar jauh lebih irit.</p>
+                    <div class="specs">
+                        <span class="spec-item">Mesin: 108cc PGM-FI</span>
+                        <span class="spec-item">Rem: Combi Brake System (CBS)</span>
+                        <span class="spec-item">Bagasi: 11,2 Liter</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Generasi 3 -->
+            <article class="gen-card">
+                <div class="gen-year">
+                    <span class="num">Generasi 3</span>
+                    <span class="year">2014 - 2016</span>
+                </div>
+                <div class="gen-content">
+                    <h3>BeAT eSP & BeAT POP</h3>
+                    <span class="gen-tag">Starter Halus ACG</span>
+                    <p>Penyematan teknologi eSP (Enhanced Smart Power) yang membuat suara starter menjadi halus (ACG Starter) dan hadirnya fitur Idling Stop System (ISS). Pada generasi ini juga lahir varian BeAT POP dengan desain membulat.</p>
+                    <div class="specs">
+                        <span class="spec-item">Teknologi: eSP & ACG Starter</span>
+                        <span class="spec-item">Fitur: Idling Stop System (ISS)</span>
+                        <span class="spec-item">Varian: Sporty & POP</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Generasi 4 -->
+            <article class="gen-card">
+                <div class="gen-year">
+                    <span class="num">Generasi 4</span>
+                    <span class="year">2016 - 2020</span>
+                </div>
+                <div class="gen-content">
+                    <h3>All New BeAT eSP & BeAT Street</h3>
+                    <span class="gen-tag">Desain Tajam & Setang Telanjang</span>
+                    <p>Mengusung konsep desain serba tajam dan agresif, menggunakan ban tubeless dengan desain velg baru, serta panel meter kombinasi analog-digital (ECO Indicator). Varian BeAT Street dengan setang telanjang mulai diperkenalkan.</p>
+                    <div class="specs">
+                        <span class="spec-item">Panel: Semi Digital + ECO</span>
+                        <span class="spec-item">Ban: Tubeless</span>
+                        <span class="spec-item">Varian Baru: BeAT Street</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Generasi 5 -->
+            <article class="gen-card">
+                <div class="gen-year">
+                    <span class="num">Generasi 5</span>
+                    <span class="year">2020 - 2024</span>
+                </div>
+                <div class="gen-content">
+                    <h3>All New BeAT (Rangka eSAF)</h3>
+                    <span class="gen-tag">Rangka Baru & Lampu LED</span>
+                    <p>Perombakan total pada sasis menggunakan rangka eSAF yang lebih ringan dan lincah. Lampu utama sudah menggunakan teknologi LED, kapasitas tangki bensin membesar menjadi 4,2 liter, serta tersedia power charger.</p>
+                    <div class="specs">
+                        <span class="spec-item">Rangka: eSAF</span>
+                        <span class="spec-item">Lampu: LED Headlight</span>
+                        <span class="spec-item">Tangki: 4,2 Liter</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Generasi 6 -->
+            <article class="gen-card">
+                <div class="gen-year">
+                    <span class="num">Generasi 6</span>
+                    <span class="year">2024 - Sekarang</span>
+                </div>
+                <div class="gen-content">
+                    <h3>All New BeAT Smart Key</h3>
+                    <span class="gen-tag">Keamanan Keyless & Anti Maling</span>
+                    <p>Desain bodi diperbarui menjadi lebih sporty dengan lekukan kompak. Pembaruan paling signifikan adalah hadirnya sistem kunci pintar (Smart Key / Keyless) dan alarm anti-maling pada tipe Deluxe, serta hilangnya kick starter pada varian tertinggi.</p>
+                    <div class="specs">
+                        <span class="spec-item">Kunci: Smart Key System</span>
+                        <span class="spec-item">Keamanan: Alarm Anti-Maling</span>
+                        <span class="spec-item">Velg: 12 Inci (Khusus Street)</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Tabel Perbandingan Singkat -->
+        <section id="perbandingan" class="table-wrapper">
+            <h2 class="section-title">Ringkasan Spesifikasi Utama</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Generasi</th>
+                        <th>Tahun</th>
+                        <th>Sistem Bahan Bakar</th>
+                        <th>Fitur Unggulan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Generasi 1</td>
+                        <td>2008–2012</td>
+                        <td>Karburator</td>
+                        <td>Side Stand Switch, Brake Lock</td>
+                    </tr>
+                    <tr>
+                        <td>Generasi 2</td>
+                        <td>2012–2014</td>
+                        <td>Injeksi (PGM-FI)</td>
+                        <td>Combi Brake System (CBS), Bagasi 11,2L</td>
+                    </tr>
+                    <tr>
+                        <td>Generasi 3</td>
+                        <td>2014–2016</td>
+                        <td>Injeksi + eSP</td>
+                        <td>ACG Starter (Halus), Idling Stop System</td>
+                    </tr>
+                    <tr>
+                        <td>Generasi 4</td>
+                        <td>2016–2020</td>
+                        <td>Injeksi + eSP</td>
+                        <td>ECO Indicator, Ban Tubeless, Varian Street</td>
+                    </tr>
+                    <tr>
+                        <td>Generasi 5</td>
+                        <td>2020–2024</td>
+                        <td>Injeksi + eSP</td>
+                        <td>Rangka eSAF, Lampu LED, Power Charger</td>
+                    </tr>
+                    <tr>
+                        <td>Generasi 6</td>
+                        <td>2024–Kini</td>
+                        <td>Injeksi + eSP</td>
+                        <td>Smart Key (Keyless), Alarm, Indikator Aki</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Dibuat untuk pecinta otomotif roda dua Indonesia. | Tema <strong>Honda BeAT</strong></p>
+    </footer>
+
+</body>
+</html>
